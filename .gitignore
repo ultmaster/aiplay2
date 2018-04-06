@@ -1,0 +1,5 @@
+.idea
+data
+static/node_modules
+static/semantic
+db.sqlite3
