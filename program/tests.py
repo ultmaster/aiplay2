@@ -59,4 +59,26 @@ class ProgramTest(TestCase):
         print(a.time_consumption, a.return_code, a.raw_output)
         print(b.time_consumption, b.return_code, b.raw_output)
         print(c.time_consumption, c.return_code, c.raw_output)
-        # self.assertEqual(b.raw_output.strip(), txt)
+        txt = """-1
+1 1 1 1
+reader1: 1
+reader2: -99
+reader1: 2
+reader2: -100
+reader1: 3
+reader2: -101
+reader1: 4
+reader2: -102
+reader1: 5
+reader2: -103
+reader1: 6
+reader2: -104
+reader1: 7
+reader2: -105
+reader1: 8
+reader2: -106
+reader1: 9
+reader2: -107
+reader1: 10
+reader2: -108"""
+        self.assertEqual(c.raw_output.strip(), txt)

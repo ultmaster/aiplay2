@@ -12,8 +12,8 @@ class Solution(models.Model):
 
 class GameSolution(Solution):
     score = models.PositiveIntegerField(default=0)
-    user_report = models.ForeignKey(RunningReport, related_name="user_report_set")
-    judge_report = models.ForeignKey(RunningReport, related_name="judge_report_set")
+    user_report = models.ForeignKey(RunningReport, null=True, related_name="user_report_set")
+    judge_report = models.ForeignKey(RunningReport, null=True, related_name="judge_report_set")
 
 
 class CombatSolution(Solution):

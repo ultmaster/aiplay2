@@ -26,6 +26,12 @@ def compile_code(a: Code):
     a.save()
 
 
+def create_code_object(code, lang):
+    code = Code.objects.create(code=code, language=lang)
+    compile_code(code)
+    return code
+
+
 def run_two_programs(a: Code, b: Code, time_limit: int):
     """
     :param a: submitted code
