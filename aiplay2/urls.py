@@ -19,9 +19,13 @@ from django.contrib import auth
 from django.contrib.auth.views import LoginView
 
 from scene.views import HomeView
+from program.views import CodeListView, CodeDetailView, CodeCompileView
 
 urlpatterns = [
     url(r'^$', HomeView.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', LoginView.as_view()),
+    url(r'^code/$', CodeListView.as_view()),
+    url(r'^code/(?P<pk>\d+)/$', CodeDetailView.as_view(), name='code_detail'),
+    url(r'^code/(?P<pk>\d+)/compile/$', CodeCompileView.as_view(), name='code_compile'),
 ]

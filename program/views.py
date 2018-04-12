@@ -5,10 +5,13 @@ import time
 from datetime import datetime
 
 from django.db import transaction
+from django.urls import reverse
 from django.utils import timezone
 
 from django.conf import settings
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views import View
+from django.views.generic import DetailView
 from django.views.generic import ListView
 
 from sandbox import run, compile
@@ -189,4 +192,19 @@ def run_three_programs(a: Code, b: Code, c: Code, time_limit: int):
 
 
 class CodeListView(ListView):
+    template_name = 'program/code_list.html'
     queryset = Code.objects.all()
+
+
+class CodeDetailView(DetailView):
+    template_name = 'program/code_preview.html'
+    queryset = Code.objects.all()
+    context_object_name = 'code'
+
+
+class CodeCompileView(View):
+    # this is not safe. just for demo...
+    def get(self, request, pk):
+        code = get_object_or_404(Code, pk=pk)
+        compile_code(code)
+        return redirect(reverse('code_detail', kwargs={'pk': pk}))

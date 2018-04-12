@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="ui header">Submitted Codes</h1>
+
+  <table class="ui stripped table">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Lang</th>
+        <th>Compilable</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for code in code_list %}
+      <tr>
+        <td><a href="{% url 'code_detail' code.pk %}">{{ code }}</a></td>
+        <td>{{ code.get_language_display }}</td>
+        <td>{{ code.get_is_compiled_display }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

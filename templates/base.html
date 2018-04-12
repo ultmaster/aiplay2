@@ -7,10 +7,10 @@
       <div class="header item">
         AI Coding Playground
       </div>
-      <a href="#" class="item">Codes</a>
+      <a href="/code/" class="item">Codes</a>
       <a href="#" class="item">Solutions</a>
       <a href="#" class="item">Challenges</a>
-      <a href="/login" class="ui right dropdown item">
+      <a href="/login/" class="ui right dropdown item">
         Login
       </a>
     </div>
@@ -19,6 +19,9 @@
   <div class="ui hidden divider"></div>
 
   <div class="ui container">
+    <div style="height: 20px"></div>
+
+  {% block content %}
     <h1 class="ui header">AI Coding Playground</h1>
 
     <div class="ui items">
@@ -32,5 +35,8 @@
     {% endfor %}
     </div>
   </div>
+  {% endblock %}
+
+  <div class="ui container" style="height: 100px"></div>
 
 {% endblock %}

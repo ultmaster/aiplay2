@@ -1,6 +1,14 @@
 from django.db import models
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters.html import HtmlFormatter
+
 from sandbox.lang import SUPPORTED_LANG
 import traceback
+
+
+def transform_code_to_html(code, lang):
+    return highlight(code, get_lexer_by_name(lang), HtmlFormatter())
 
 
 class Code(models.Model):
@@ -16,7 +24,10 @@ class Code(models.Model):
     compiler_message = models.TextField(blank=True)
 
     def __str__(self):
-        return str(self.pk) + ": " + self.code[:20] + "..."
+        return str(self.pk) + ": " + self.code[:30] + "..."
+
+    def code_html(self):
+        return transform_code_to_html(self.code, self.language)
 
 
 class RunningReport(models.Model):

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class="ui header">Code Detail: #{{ code.pk }}</h1>
+  <table class="ui definition table">
+    <tbody>
+      <tr>
+        <td>Code</td>
+        <td>{{ code.code_html | safe }}</td>
+      </tr>
+      <tr>
+        <td>Language</td>
+        <td>{{ code.get_language_display }}</td>
+      </tr>
+      <tr>
+        <td>Compilable</td>
+        <td>{{ code.get_is_compiled_display }}, <a href="{% url 'code_compile' code.pk %}">Re-compile</a></td>
+      </tr>
+      <tr>
+        <td>Compiler Message</td>
+        <td><pre>{{ code.compiler_message }}</pre></td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

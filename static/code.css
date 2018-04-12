@@ -1,0 +1,300 @@
+.highlight .hll, .codehilite .hll {
+  background-color: #ffffcc
+}
+
+.highlight .c, .codehilite .c {
+  color: #aaaaaa;
+  font-style: italic
+}
+
+/* Comment */
+.highlight .err, .codehilite .err {
+  color: #F00000;
+  background-color: #F0A0A0
+}
+
+/* Error */
+.highlight .k, .codehilite .k {
+  color: #0000aa
+}
+
+/* Keyword */
+.highlight .cm, .codehilite .cm {
+  color: #aaaaaa;
+  font-style: italic
+}
+
+/* Comment.Multiline */
+.highlight .cp, .codehilite .cp {
+  color: #4c8317
+}
+
+/* Comment.Preproc */
+.highlight .c1, .codehilite .c1 {
+  color: #aaaaaa;
+  font-style: italic
+}
+
+/* Comment.Single */
+.highlight .cs, .codehilite .cs {
+  color: #0000aa;
+  font-style: italic
+}
+
+/* Comment.Special */
+.highlight .gd, .codehilite .gd {
+  color: #aa0000
+}
+
+/* Generic.Deleted */
+.highlight .ge, .codehilite .ge {
+  font-style: italic
+}
+
+/* Generic.Emph */
+.highlight .gr, .codehilite .gr {
+  color: #aa0000
+}
+
+/* Generic.Error */
+.highlight .gh, .codehilite .gh {
+  color: #000080;
+  font-weight: bold
+}
+
+/* Generic.Heading */
+.highlight .gi, .codehilite .gi {
+  color: #00aa00
+}
+
+/* Generic.Inserted */
+.highlight .go, .codehilite .go {
+  color: #888888
+}
+
+/* Generic.Output */
+.highlight .gp, .codehilite .gp {
+  color: #555555
+}
+
+/* Generic.Prompt */
+.highlight .gs, .codehilite .gs {
+  font-weight: bold
+}
+
+/* Generic.Strong */
+.highlight .gu, .codehilite .gu {
+  color: #800080;
+  font-weight: bold
+}
+
+/* Generic.Subheading */
+.highlight .gt, .codehilite .gt {
+  color: #aa0000
+}
+
+/* Generic.Traceback */
+.highlight .kc, .codehilite .kc {
+  color: #0000aa
+}
+
+/* Keyword.Constant */
+.highlight .kd, .codehilite .kd {
+  color: #0000aa
+}
+
+/* Keyword.Declaration */
+.highlight .kn, .codehilite .kn {
+  color: #0000aa
+}
+
+/* Keyword.Namespace */
+.highlight .kp, .codehilite .kp {
+  color: #0000aa
+}
+
+/* Keyword.Pseudo */
+.highlight .kr, .codehilite .kr {
+  color: #0000aa
+}
+
+/* Keyword.Reserved */
+.highlight .kt, .codehilite .kt {
+  color: #00aaaa
+}
+
+/* Keyword.Type */
+.highlight .m, .codehilite .m {
+  color: #009999
+}
+
+/* Literal.Number */
+.highlight .s, .codehilite .s {
+  color: #aa5500
+}
+
+/* Literal.String */
+.highlight .na, .codehilite .na {
+  color: #1e90ff
+}
+
+/* Name.Attribute */
+.highlight .nb, .codehilite .nb {
+  color: #00aaaa
+}
+
+/* Name.Builtin */
+.highlight .nc, .codehilite .nc {
+  color: #00aa00;
+  text-decoration: underline
+}
+
+/* Name.Class */
+.highlight .no, .codehilite .no {
+  color: #aa0000
+}
+
+/* Name.Constant */
+.highlight .nd, .codehilite .nd {
+  color: #888888
+}
+
+/* Name.Decorator */
+.highlight .ni, .codehilite .ni {
+  color: #800000;
+  font-weight: bold
+}
+
+/* Name.Entity */
+.highlight .nf, .codehilite .nf {
+  color: #00aa00
+}
+
+/* Name.Function */
+.highlight .nn, .codehilite .nn {
+  color: #00aaaa;
+  text-decoration: underline
+}
+
+/* Name.Namespace */
+.highlight .nt, .codehilite .nt {
+  color: #1e90ff;
+  font-weight: bold
+}
+
+/* Name.Tag */
+.highlight .nv, .codehilite .nv {
+  color: #aa0000
+}
+
+/* Name.Variable */
+.highlight .ow, .codehilite .ow {
+  color: #0000aa
+}
+
+/* Operator.Word */
+.highlight .w, .codehilite .w {
+  color: #bbbbbb
+}
+
+/* Text.Whitespace */
+.highlight .mf, .codehilite .mf {
+  color: #009999
+}
+
+/* Literal.Number.Float */
+.highlight .mh, .codehilite .mh {
+  color: #009999
+}
+
+/* Literal.Number.Hex */
+.highlight .mi, .codehilite .mi {
+  color: #009999
+}
+
+/* Literal.Number.Integer */
+.highlight .mo, .codehilite .mo {
+  color: #009999
+}
+
+/* Literal.Number.Oct */
+.highlight .sb, .codehilite .sb {
+  color: #aa5500
+}
+
+/* Literal.String.Backtick */
+.highlight .sc, .codehilite .sc {
+  color: #aa5500
+}
+
+/* Literal.String.Char */
+.highlight .sd, .codehilite .sd {
+  color: #aa5500
+}
+
+/* Literal.String.Doc */
+.highlight .s2, .codehilite .s2 {
+  color: #aa5500
+}
+
+/* Literal.String.Double */
+.highlight .se, .codehilite .se {
+  color: #aa5500
+}
+
+/* Literal.String.Escape */
+.highlight .sh, .codehilite .sh {
+  color: #aa5500
+}
+
+/* Literal.String.Heredoc */
+.highlight .si, .codehilite .si {
+  color: #aa5500
+}
+
+/* Literal.String.Interpol */
+.highlight .sx, .codehilite .sx {
+  color: #aa5500
+}
+
+/* Literal.String.Other */
+.highlight .sr, .codehilite .sr {
+  color: #009999
+}
+
+/* Literal.String.Regex */
+.highlight .s1, .codehilite .s1 {
+  color: #aa5500
+}
+
+/* Literal.String.Single */
+.highlight .ss, .codehilite .ss {
+  color: #0000aa
+}
+
+/* Literal.String.Symbol */
+.highlight .bp, .codehilite .bp {
+  color: #00aaaa
+}
+
+/* Name.Builtin.Pseudo */
+.highlight .vc, .codehilite .vc {
+  color: #aa0000
+}
+
+/* Name.Variable.Class */
+.highlight .vg, .codehilite .vg {
+  color: #aa0000
+}
+
+/* Name.Variable.Global */
+.highlight .vi, .codehilite .vi {
+  color: #aa0000
+}
+
+/* Name.Variable.Instance */
+.highlight .il, .codehilite .il {
+  color: #009999
+}
+
+/* Literal.Number.Integer.Long */
