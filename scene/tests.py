@@ -36,7 +36,7 @@ class DemoTest(TestCase):
         judge = create_code_object(open("demo/gobang/judge.cpp", "r").read(), "cpp")
         solution1 = create_solution(open("demo/gobang/player1.cpp", "r").read(), "cpp", self.user, "combat")
         solution2 = create_solution(open("demo/gobang/player1.cpp", "r").read(), "cpp", self.user, "combat")
-        a, b, j = ChallengeJudgeModule.judgea_combat(solution1, solution2, judge, 1)
+        a, b, j = ChallengeJudgeModule.judge_combat(solution1, solution2, judge, 1)
         print(a.return_code, a.raw_output)
         print(b.return_code, b.raw_output)
         print(j.return_code, j.raw_output)
