@@ -7,13 +7,16 @@ class Code(models.Model):
 
     code = models.TextField()
     language = models.CharField(choices=SUPPORTED_LANG, max_length=12)
-    workspace = models.CharField(max_length=192)
+    workspace = models.CharField(max_length=192, blank=True)
     is_compiled = models.IntegerField(choices=(
         (0, 'Unknown'),
         (1, 'Success'),
         (2, 'Failed'),
     ), default=0)
     compiler_message = models.TextField(blank=True)
+
+    def __str__(self):
+        return str(self.pk) + ": " + self.code[:20] + "..."
 
 
 class RunningReport(models.Model):

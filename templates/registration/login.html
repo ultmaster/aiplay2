@@ -1,0 +1,51 @@
+{% extends 'html_base.html' %}
+
+{% block style %}
+  <style type="text/css">
+    body {
+      background-color: #EFEFEF;
+    }
+    body > .grid {
+      height: 100%;
+    }
+    .image {
+      margin-top: -100px;
+    }
+    .column {
+      max-width: 450px;
+    }
+  </style>
+{% endblock %}
+
+{% block _content %}
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+      <h2 class="ui teal header">
+        Log-in to your account
+      </h2>
+      <form class="ui large form" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="/">
+        <div class="ui stacked segment">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="text" name="username" placeholder="Username">
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" name="password" placeholder="Password">
+            </div>
+          </div>
+          <button class="ui fluid large teal submit button">Login</button>
+        </div>
+      </form>
+
+      <div class="ui message">
+        Don't have an account? <a href="#">Sign Up</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

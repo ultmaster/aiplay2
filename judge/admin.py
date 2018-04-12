@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from judge.models import CombatSolution, GameSolution, Solution
+
+admin.site.register(Solution)
+admin.site.register(CombatSolution)
+admin.site.register(GameSolution)

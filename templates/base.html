@@ -1,0 +1,36 @@
+{% extends 'html_base.html' %}
+
+{% block _content %}
+
+  <div class="ui borderless main menu">
+    <div class="ui container">
+      <div class="header item">
+        AI Coding Playground
+      </div>
+      <a href="#" class="item">Codes</a>
+      <a href="#" class="item">Solutions</a>
+      <a href="#" class="item">Challenges</a>
+      <a href="/login" class="ui right dropdown item">
+        Login
+      </a>
+    </div>
+  </div>
+
+  <div class="ui hidden divider"></div>
+
+  <div class="ui container">
+    <h1 class="ui header">AI Coding Playground</h1>
+
+    <div class="ui items">
+    {% for scene in scene_list %}
+      <div class="item">
+        <div class="content">
+          <a class="header">Scene #{{ scene.pk }}. {{ scene.title }}</a>
+          <div class="description">{{ scene.get_statement_markdown | safe }}</div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}

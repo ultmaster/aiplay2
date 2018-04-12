@@ -9,6 +9,7 @@ from django.utils import timezone
 
 from django.conf import settings
 from django.shortcuts import render
+from django.views.generic import ListView
 
 from sandbox import run, compile
 from util.timestamp import timestamp_onlydigit
@@ -185,3 +186,7 @@ def run_three_programs(a: Code, b: Code, c: Code, time_limit: int):
             report_model_b.save()
 
     return report_model_a, report_model_b, report_model_c
+
+
+class CodeListView(ListView):
+    queryset = Code.objects.all()

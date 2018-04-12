@@ -1,3 +1,4 @@
+import markdown
 from django.db import models
 
 from judge.models import Solution
@@ -16,7 +17,19 @@ class Scene(models.Model):
     judge = models.ForeignKey(Code, null=True, related_name="judge_set")
     html_analysis_code = models.ForeignKey(Code, null=True, related_name="analysis_set")
     scene_type = models.CharField(max_length=30, choices=TYPE_CHOICES)
-    solutions = models.ManyToManyField(Solution)
+    solutions = models.ManyToManyField(Solution, blank=True)
+
+    def __str__(self):
+        return self.get_scene_type_display() + ": " + self.title
+
+    def get_statement_markdown(self):
+        md = markdown.Markdown(
+            extensions=['fenced_code',
+                        'codehilite',
+                        'tables',
+                        ]
+        )
+        return md.convert(self.statement)
 
 
 class Challenge(models.Model):

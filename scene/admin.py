@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from scene.models import Challenge, Scene
+
+admin.site.register(Scene)
+admin.site.register(Challenge)

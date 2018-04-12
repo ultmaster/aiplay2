@@ -1,7 +1,11 @@
 from django.shortcuts import render
+from django.views.generic import DetailView
+from django.views.generic import ListView
+from django.views.generic import TemplateView
 
 from judge.models import CombatSolution
 from judge.views import JudgeModule
+from scene.models import Scene
 
 
 class ChallengeJudgeModule(JudgeModule):
@@ -41,3 +45,16 @@ class ChallengeJudgeModule(JudgeModule):
             ChallengeJudgeModule.solve_rating(a, b, tie=x == y)
         else:
             ChallengeJudgeModule.solve_rating(b, a)
+
+
+class HomeView(ListView):
+    template_name = 'base.html'
+    queryset = Scene.objects.all()
+    context_object_name = 'scene_list'
+
+
+class SceneDetailedSubmitView(DetailView):
+    queryset = Scene.objects.all()
+    context_object_name = 'scene'
+
+
