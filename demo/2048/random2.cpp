@@ -9,11 +9,9 @@ int main() {
         if (a == 0) break;
         for (int i = 0; i < 16; ++i)
             scanf("%d", &b);
-        switch (counter % 4) {
-            case 0: cout << "W" << endl; break;
-            case 1: cout << "A" << endl; break;
-            case 2: cout << "S" << endl; break;
-            case 3: cout << "D" << endl; break;
+        switch (counter % 2) {
+            case 0: cout << "S" << endl; break;
+            case 1: cout << "D" << endl; break;
         }
         counter++;
     }

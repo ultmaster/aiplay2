@@ -20,16 +20,19 @@ class g2048 {
 public:
     g2048() : done(false), win(false), moved(true), score(0) {}
 
-    void loop() {
+    int loop() {
         addTile();
         while (true) {
             if (moved) addTile();
-            drawBoard();
             if (done) break;
+            fprintf(writer, "1\n");
+            fflush(writer);
+            drawBoard();
             waitKey();
         }
         fprintf(writer, "0\n");
         fflush(writer);
+        return score;
     }
 
 private:
@@ -51,8 +54,6 @@ private:
 
     void waitKey() {
         moved = false;
-        fprintf(writer, "1\n");
-        fflush(writer);
         char s[10], c;
         fscanf(reader, "%s", s);
         c = s[0];
@@ -73,6 +74,10 @@ private:
                 break;
             case 'D':
                 move(RIGHT);
+                break;
+            default:
+                printf("invalid(\"Invalid Response '%c'\")\n", c);
+                fflush(stdout);
         }
         for (int y = 0; y < 4; y++)
             for (int x = 0; x < 4; x++)
@@ -203,6 +208,6 @@ int main(int argc, char *argv[]) {
 
     srand(static_cast<uint>( time(NULL)));
     g2048 g;
-    g.loop();
+    cout << g.loop() << endl;
     return 0;
 }
