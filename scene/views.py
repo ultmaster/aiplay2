@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import TemplateView
 
-from judge.models import CombatSolution
-from judge.views import JudgeModule
+from judge.models import CombatSolution, GameSolution
+from judge.views import JudgeModule, create_solution
 from scene.models import Scene
 
 
@@ -56,5 +56,27 @@ class HomeView(ListView):
 class SceneDetailedSubmitView(DetailView):
     queryset = Scene.objects.all()
     context_object_name = 'scene'
+    template_name = 'scene/scene_base.html'
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        ls = list(map(lambda x: x.pk, data['scene'].solutions.all()))
+        data["solutions"] = GameSolution.objects.filter(pk__in=ls)
+        return data
+
+    def post(self, request, pk):
+        scene = get_object_or_404(Scene, pk=pk)
+        solution = create_solution(request.POST['code'], request.POST["lang"], request.user, "game")
+        scene.solutions.add(solution)
+        JudgeModule.judge_game(solution, scene.judge, scene.time_limit / 1000)
+        return redirect(request.path)
 
 
+class SceneSolutionVisualizationView(TemplateView):
+    template_name = 'scene/visualization.html'
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['scene'] = get_object_or_404(Scene, pk=self.kwargs['pk'])
+        data['solution'] = get_object_or_404(GameSolution, pk=self.kwargs['spk'])
+        return data

@@ -10,8 +10,12 @@
       <a href="/code/" class="item">Codes</a>
       <a href="#" class="item">Solutions</a>
       <a href="#" class="item">Challenges</a>
-      <a href="/login/" class="ui right dropdown item">
-        Login
+      <a href="/login/" class="ui right item">
+        {% if request.user.is_authenticated %}
+          {{ request.user }}
+        {% else %}
+          Login
+        {% endif %}
       </a>
     </div>
   </div>
@@ -28,7 +32,7 @@
     {% for scene in scene_list %}
       <div class="item">
         <div class="content">
-          <a class="header">Scene #{{ scene.pk }}. {{ scene.title }}</a>
+          <a class="header" href="{% url 'scene_detail' scene.pk %}">Scene #{{ scene.pk }}. {{ scene.title }}</a>
           <div class="description">{{ scene.get_statement_markdown | safe }}</div>
         </div>
       </div>

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1 class="ui header">Scene #{{ scene.pk }}: {{ scene.title }}</h1>
+
+  {{ scene.get_statement_markdown | safe }}
+
+  <h2 class="ui header">Submit your code</h2>
+
+  <form class="ui form" method="post">
+    {% csrf_token %}
+    <div class="field">
+      <label>Language:</label>
+      <div class="ui selection search submit language dropdown">
+        <input name="lang" id="id_lang" type="hidden" value="cpp">
+        <i class="dropdown icon"></i>
+        <div class="text"></div>
+        <div class="menu">
+          <div class="item" data-value="cpp">C++</div>
+          <div class="item" data-value="py">Python</div>
+          <div class="item" data-value="java">Java</div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Code:</label>
+      <textarea name="code" style="font-family: monospace"></textarea>
+    </div>
+    <div class="field">
+      <button class="ui button positive">Submit</button>
+    </div>
+  </form>
+
+  <h2 class="ui header">Available Solutions</h2>
+
+  <table class="ui stripped celled table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Author</th>
+        <th>Created</th>
+        <th>Language</th>
+        <th>Score</th>
+        <th>Process</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for solution in solutions %}
+      <tr>
+        <td>{{ solution.pk }}</td>
+        <td>{{ solution.author }}</td>
+        <td>{{ solution.create_time }}</td>
+        <td><a href="{% url 'code_detail' solution.code.pk %}">{{ solution.code.get_language_display }}</a></td>
+        <td>{{ solution.score }}</td>
+        <td><a href="{% url 'scene_solution' scene.pk solution.pk %}">Visualization</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
