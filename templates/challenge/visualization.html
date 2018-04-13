@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1 class="ui header">Challenge #{{ challenge.pk }}</h1>
+
+  <div class="ui grid">
+    <div class="ten wide column">
+      <div id="main">
+
+      </div>
+    </div>
+    <div class="six wide column">
+      <table class="ui definition celled small table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Judge</th>
+            <th>User 1</th>
+            <th>User 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Code</td>
+            <td><a href="{% url 'code_detail' challenge.report0_judge.code_id %}">#{{ challenge.report0_judge.code_id }}</a></td>
+            <td><a href="{% url 'code_detail' challenge.report1.code_id %}">#{{ challenge.report1.code_id }}</a></td>
+            <td><a href="{% url 'code_detail' challenge.report2.code_id %}">#{{ challenge.report2.code_id }}</a></td>
+          </tr>
+          <tr>
+            <td>CPU Time</td>
+            <td>{{ challenge.report0_judge.time_consumption | floatformat:3 }}</td>
+            <td>{{ challenge.report1.time_consumption | floatformat:3 }}</td>
+            <td>{{ challenge.report2.time_consumption | floatformat:3 }}</td>
+          </tr>
+          <tr>
+            <td>Exit Code</td>
+            <td>{{ challenge.report0_judge.return_code }}</td>
+            <td>{{ challenge.report1.return_code }}</td>
+            <td>{{ challenge.report2.return_code }}</td>
+          </tr>
+          <tr>
+            <td>Score</td>
+            <td></td>
+            <td>{{ challenge.score1 }}</td>
+            <td>{{ challenge.score2 }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ui form">
+        <div class="field">
+          <textarea style="font-family:monospace" rows="40" id="output">{{ challenge.report0_judge.raw_output }}</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+var htmlDiv = $("#main");
+var width = htmlDiv.width();
+var height = width * 1.2;
+htmlDiv.height(height);
+var svg = d3.select("#main").append("svg")
+  .attr("width", width).attr("height", height);
+var lineCount = 20;
+var padding = width / (lineCount + 1);
+
+var rectGroup = svg.append("g")
+  .attr("width", width).attr("height", width).attr("class", "rectGroup");
+var scoreboardGroup = svg.append("g")
+  .attr("transform", "translate(" + padding + "," + width + ")")
+  .attr("width", width).attr("height", width * 0.2);
+var text1 = scoreboardGroup.append("text").text("READY").attr("dy", 35).style("font-size", 60);
+
+function getLocation(position) {
+  return padding * position + padding;
+}
+
+for (var i = 0; i < 20; i++) {
+  rectGroup.append('line')
+    .attr('x1', getLocation(0))
+    .attr('y1', getLocation(i))
+    .attr('x2', getLocation(19))
+    .attr('y2', getLocation(i))
+    .attr('stroke', 'black')
+    .attr('stroke-width', 1);
+  rectGroup.append('line')
+    .attr('y1', getLocation(0))
+    .attr('x1', getLocation(i))
+    .attr('y2', getLocation(19))
+    .attr('x2', getLocation(i))
+    .attr('stroke', 'black')
+    .attr('stroke-width', 1);
+}
+
+var counter = 0;
+var data = document.getElementById("output").textContent.split("\n");
+
+function Drop(value, x, y) {
+  console.log(x + " " +  y +  " " + value);
+  rectGroup.append('circle')
+    .attr('cx', getLocation(x))
+    .attr('cy', getLocation(y))
+    .attr('r', padding * (1 - 0.618))
+    .attr('fill', value == 1 ? "white" : "black")
+    .attr('stroke', 'black')
+    .attr('stroke-width', 1);
+  text1.text((value == 1 ? "WHITE" : "BLACK") + ": (" + x + ", " + y + ")");
+}
+
+var timer = setInterval(function () {
+  if (counter < data.length - 1) {
+    eval(data[counter++]);
+  }
+  else clearInterval(timer);
+}, 100);
+</script>
+
+{% endblock %}

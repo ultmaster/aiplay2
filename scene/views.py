@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views import View
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import TemplateView
@@ -42,9 +43,9 @@ class ChallengeJudgeModule(JudgeModule):
         challenge.score1, challenge.score2 = x, y
         challenge.save()
         if x >= y:
-            ChallengeJudgeModule.solve_rating(a, b, tie=x == y)
+            ChallengeJudgeModule.solve_rating(solution_a, solution_b, tie=x == y)
         else:
-            ChallengeJudgeModule.solve_rating(b, a)
+            ChallengeJudgeModule.solve_rating(solution_b, solution_a)
 
 
 class HomeView(ListView):
@@ -90,3 +91,22 @@ class ChallengeListView(ListView):
     template_name = 'challenge/challenge_list.html'
     queryset = Challenge.objects.all()
     context_object_name = 'challenge_list'
+
+
+class ChallengeVisualizationView(TemplateView):
+    template_name = 'challenge/visualization.html'
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['challenge'] = get_object_or_404(Challenge, pk=self.kwargs['pk'])
+        data['scene'] = data['challenge'].belong_to
+        return data
+
+
+class ChallengeAcceptView(View):
+    # again: get for demo purpose
+    def get(self, request, pk):
+        challenge = get_object_or_404(Challenge, pk=pk)
+        ChallengeJudgeModule.judge_challenge(challenge, challenge.code1, challenge.code2, challenge.belong_to.judge,
+                                             challenge.belong_to.time_limit / 1000)
+        return redirect("/challenge/")

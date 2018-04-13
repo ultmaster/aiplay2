@@ -11,7 +11,7 @@ class JudgeModule(object):
     def fetch_score(report: RunningReport):
         try:
             last_line = report.raw_output.strip().split()[-1].strip()
-            return tuple(map(int, tuple(last_line.split())))
+            return tuple(map(int, tuple(last_line.split(","))))
         except:
             return (0, 0)
 

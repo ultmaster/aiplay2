@@ -26,7 +26,7 @@
             <td><a href="{% url 'code_detail' solution.user_report.code_id %}">#{{ solution.user_report.code_id }}</a></td>
           </tr>
           <tr>
-            <td>Time</td>
+            <td>CPU Time</td>
             <td>{{ solution.judge_report.time_consumption | floatformat:3 }}</td>
             <td>{{ solution.user_report.time_consumption | floatformat:3 }}</td>
           </tr>

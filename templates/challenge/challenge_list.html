@@ -11,6 +11,8 @@
         <th>Time</th>
         <th>Score</th>
         <th>Scene</th>
+        <th>Accept</th>
+        <th>Process</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +23,8 @@
           <td>{{ challenge.create_time }}</td>
           <td>{{ challenge.score1 }} : {{ challenge.score2 }}</td>
           <td>{{ challenge.belong_to }}</td>
+          <td><a href="{% url 'challenge_accept' challenge.pk %}">Accept</a></td>
+          <td><a href="{% url 'challenge_detail' challenge.pk %}">Visualization</a></td>
         </tr>
       {% endfor %}
     </tbody>
