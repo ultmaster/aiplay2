@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 
 from judge.models import CombatSolution, GameSolution
 from judge.views import JudgeModule, create_solution
-from scene.models import Scene
+from scene.models import Scene, Challenge
 
 
 class ChallengeJudgeModule(JudgeModule):
@@ -61,14 +61,18 @@ class SceneDetailedSubmitView(DetailView):
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
         ls = list(map(lambda x: x.pk, data['scene'].solutions.all()))
-        data["solutions"] = GameSolution.objects.filter(pk__in=ls)
+        if data['scene'].scene_type == 'game':
+            data["solutions"] = GameSolution.objects.filter(pk__in=ls)
+        else:
+            data['solutions'] = CombatSolution.objects.filter(pk__in=ls)
         return data
 
     def post(self, request, pk):
         scene = get_object_or_404(Scene, pk=pk)
-        solution = create_solution(request.POST['code'], request.POST["lang"], request.user, "game")
+        solution = create_solution(request.POST['code'], request.POST["lang"], request.user, scene.scene_type)
         scene.solutions.add(solution)
-        JudgeModule.judge_game(solution, scene.judge, scene.time_limit / 1000)
+        if scene.scene_type == 'game':
+            JudgeModule.judge_game(solution, scene.judge, scene.time_limit / 1000)
         return redirect(request.path)
 
 
@@ -80,3 +84,9 @@ class SceneSolutionVisualizationView(TemplateView):
         data['scene'] = get_object_or_404(Scene, pk=self.kwargs['pk'])
         data['solution'] = get_object_or_404(GameSolution, pk=self.kwargs['spk'])
         return data
+
+
+class ChallengeListView(ListView):
+    template_name = 'challenge/challenge_list.html'
+    queryset = Challenge.objects.all()
+    context_object_name = 'challenge_list'

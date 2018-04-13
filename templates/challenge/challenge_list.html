@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="ui header">Challenges</h1>
+
+  <table class="ui stripped table">
+    <thead>
+      <tr>
+        <th>Raised By</th>
+        <th>Accepted By</th>
+        <th>Time</th>
+        <th>Score</th>
+        <th>Scene</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for challenge in challenge_list %}
+        <tr>
+          <td>{{ challenge.code1 }}</td>
+          <td>{{ challenge.code2 }}</td>
+          <td>{{ challenge.create_time }}</td>
+          <td>{{ challenge.score1 }} : {{ challenge.score2 }}</td>
+          <td>{{ challenge.belong_to }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

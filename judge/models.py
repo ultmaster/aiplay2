@@ -9,6 +9,9 @@ class Solution(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User)
 
+    def __str__(self):
+        return "Solution " + str(self.code)
+
 
 class GameSolution(Solution):
     score = models.PositiveIntegerField(default=0)
@@ -21,3 +24,6 @@ class GameSolution(Solution):
 
 class CombatSolution(Solution):
     rating = models.IntegerField(default=0)
+
+    def __str__(self):
+        return "Combat Solution #" + str(self.pk) + " - " + str(self.author)

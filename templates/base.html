@@ -4,12 +4,11 @@
 
   <div class="ui borderless main menu">
     <div class="ui container">
-      <div class="header item">
+      <a href="/" class="header item">
         AI Coding Playground
-      </div>
+      </a>
       <a href="/code/" class="item">Codes</a>
-      <a href="#" class="item">Solutions</a>
-      <a href="#" class="item">Challenges</a>
+      <a href="/challenge/" class="item">Challenges</a>
       <a href="/login/" class="ui right item">
         {% if request.user.is_authenticated %}
           {{ request.user }}
@@ -32,10 +31,11 @@
     {% for scene in scene_list %}
       <div class="item">
         <div class="content">
-          <a class="header" href="{% url 'scene_detail' scene.pk %}">Scene #{{ scene.pk }}. {{ scene.title }}</a>
+          <a class="ui dividing header" href="{% url 'scene_detail' scene.pk %}">Scene #{{ scene.pk }}. {{ scene.title }}</a>
           <div class="description">{{ scene.get_statement_markdown | safe }}</div>
         </div>
       </div>
+      <div class="ui hidden divider"></div>
     {% endfor %}
     </div>
   </div>

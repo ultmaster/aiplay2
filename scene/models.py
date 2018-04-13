@@ -1,7 +1,7 @@
 import markdown
 from django.db import models
 
-from judge.models import Solution
+from judge.models import Solution, CombatSolution
 from program.models import Code, RunningReport
 
 
@@ -33,13 +33,13 @@ class Scene(models.Model):
 
 
 class Challenge(models.Model):
-    code1 = models.ForeignKey(Solution, related_name="code1_set")
-    code2 = models.ForeignKey(Solution, related_name="code2_set")
+    code1 = models.ForeignKey(CombatSolution, related_name="code1_set")
+    code2 = models.ForeignKey(CombatSolution, related_name="code2_set")
     create_time = models.DateTimeField(auto_now_add=True)
     accept_time = models.DateTimeField(blank=True, null=True)
-    report0_judge = models.ForeignKey(RunningReport, null=True, related_name="report0_judge_set")
-    report1 = models.ForeignKey(RunningReport, null=True, related_name="report1_set")
-    report2 = models.ForeignKey(RunningReport, null=True, related_name="report2_set")
+    report0_judge = models.ForeignKey(RunningReport, blank=True, null=True, related_name="report0_judge_set")
+    report1 = models.ForeignKey(RunningReport, blank=True, null=True, related_name="report1_set")
+    report2 = models.ForeignKey(RunningReport, blank=True, null=True, related_name="report2_set")
     score1 = models.IntegerField(default=0)
     score2 = models.IntegerField(default=0)
     belong_to = models.ForeignKey(Scene)

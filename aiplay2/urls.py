@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.contrib import auth
 from django.contrib.auth.views import LoginView
 
-from scene.views import HomeView, SceneDetailedSubmitView, SceneSolutionVisualizationView
+from scene.views import HomeView, SceneDetailedSubmitView, SceneSolutionVisualizationView, ChallengeListView
 from program.views import CodeListView, CodeDetailView, CodeCompileView
 
 urlpatterns = [
@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^code/(?P<pk>\d+)/compile/$', CodeCompileView.as_view(), name='code_compile'),
     url(r'^scene/(?P<pk>\d+)/$', SceneDetailedSubmitView.as_view(), name='scene_detail'),
     url(r'^scene/(?P<pk>\d+)/solution/(?P<spk>\d+)/$', SceneSolutionVisualizationView.as_view(), name='scene_solution'),
+    url(r'^challenge/$', ChallengeListView.as_view()),
 ]
